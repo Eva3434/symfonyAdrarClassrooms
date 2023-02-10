@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cours{% endblock %}
+
+{% block body %}
+    <h1>Cours</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cour.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre_cour</th>
+                <td>{{ cour.titreCour }}</td>
+            </tr>
+            <tr>
+                <th>Synopsis_cour</th>
+                <td>{{ cour.synopsisCour }}</td>
+            </tr>
+            <tr>
+                <th>Cour_niveau</th>
+                <td>{{ cour.courNiveau }}</td>
+            </tr>
+            <tr>
+                <th>Temps_estime_cour</th>
+                <td>{{ cour.tempsEstimeCour }}</td>
+            </tr>
+            <tr>
+                <th>Image_cour</th>
+                <td>{{ cour.imageCour }}</td>
+            </tr>
+            <tr>
+                <th>Date_cour</th>
+                <td>{{ cour.dateCour ? cour.dateCour|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Cree_cour</th>
+                <td>{{ cour.creeCour }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cours_crud_index') }}">back to list</a>
+
+    <a href="{{ path('app_cours_crud_edit', {'id': cour.id}) }}">edit</a>
+
+    {{ include('cours_crud/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cours index{% endblock %}
+
+{% block body %}
+    <h1>Cours index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre_cour</th>
+                <th>Synopsis_cour</th>
+                <th>Cour_niveau</th>
+                <th>Temps_estime_cour</th>
+                <th>Image_cour</th>
+                <th>Date_cour</th>
+                <th>Cree_cour</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cour in cours %}
+            <tr>
+                <td>{{ cour.id }}</td>
+                <td>{{ cour.titreCour }}</td>
+                <td>{{ cour.synopsisCour }}</td>
+                <td>{{ cour.courNiveau }}</td>
+                <td>{{ cour.tempsEstimeCour }}</td>
+                <td>{{ cour.imageCour }}</td>
+                <td>{{ cour.dateCour ? cour.dateCour|date('Y-m-d') : '' }}</td>
+                <td>{{ cour.creeCour }}</td>
+                <td>
+                    <a href="{{ path('app_cours_crud_show', {'id': cour.id}) }}">show</a>
+                    <a href="{{ path('app_cours_crud_edit', {'id': cour.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cours_crud_new') }}">Create new</a>
+{% endblock %}

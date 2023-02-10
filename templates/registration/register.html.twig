@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}    
+    <article class="pageConnexion">
+        <section class="connexionGauche">
+            <div class="formADRAR">ADRAR Classroom</div>
+            <div class="formBienvenue">INSCRIPTION</div>
+                {{ form_start(registrationForm) }}
+                    
+                    
+                    {{ form_row(registrationForm.utilisateur_nom,{label: 'Nom'} ) }}              
+                    {{ form_row(registrationForm.utilisateur_prenom, {label: 'Prénom'}) }}               
+                    {{ form_row(registrationForm.email, {label: 'Email'}) }}               
+                    {{ form_row(registrationForm.plainPassword, {label: 'Mot de passe:'}) }}
+                    {{ form_row(registrationForm.utilisateur_image, {label: 'Télécharger votre image:'}) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+                    <button type="submit" class="btn">Insciption</button>
+                {{ form_end(registrationForm) }}
+        </section>
+        <section class="connexionDroite">
+                <div class="connexionCommentaire">« J'étais musicien indépendant, mais la COVID a tout stoppé. On m’a parlé d’ADRAR Classrooms, ça m'a ouvert des opportunités professionnelles insoupçonnées. »</div>
+                <div class="connexionNomCommentaire">Alexandre - Développeur Full-Stack Junior</div>
+                <img src="../images/imagePageConnexion.png">
+        </section>
+    </article>
+{% endblock %}
+

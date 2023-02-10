@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chapitres index{% endblock %}
+
+{% block body %}
+    <h1>Chapitres index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Chapitre_titre</th>
+                <th>Chapitre_contenu</th>
+                <th>Chapitre_position</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for chapitre in chapitres %}
+            <tr>
+                <td>{{ chapitre.id }}</td>
+                <td>{{ chapitre.chapitreTitre }}</td>
+                <td>{{ chapitre.chapitreContenu }}</td>
+                <td>{{ chapitre.chapitrePosition }}</td>
+                <td>
+                    <a href="{{ path('app_chapitres_crud_show', {'id': chapitre.id}) }}">show</a>
+                    <a href="{{ path('app_chapitres_crud_edit', {'id': chapitre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_chapitres_crud_new') }}">Create new</a>
+{% endblock %}
