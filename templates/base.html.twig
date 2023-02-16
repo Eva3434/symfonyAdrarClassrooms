@@ -26,7 +26,8 @@
             <a href="{{path('app_cours_crud_vue')}}"> Formations</a>
             <a>Administration</a>
             <img src="{{ asset("images/loupe.svg")}}" class="loupeNav">
-            <a  class="mb-3">{{ app.user.userIdentifier }}</a>
+            <img src="{{ asset("uploads/avatar/" ~ app.user.utilisateurImage)}}" class="imgAvatar">
+            <a  class="mb-3">{{ app.user.utilisateurPrenom }} {{ app.user.utilisateurNom }}</a>
             <a class="seConnecterNav" href="{{ path('app_login') }}">Déconnexion</a>
         </nav>
         {% endblock %}

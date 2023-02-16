@@ -15,10 +15,10 @@ class UtilisateurChapitre
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $utilisateur_chapitre_date_inscription = null;
+    private ?\DateTimeInterface $utilisateurChapitreDateInscription = null;
 
     #[ORM\Column]
-    private ?int $utilisateur_chapitre_termine = null;
+    private ?int $utilisateurChapitreTermine = null;
 
     public function getId(): ?int
     {
@@ -27,24 +27,24 @@ class UtilisateurChapitre
 
     public function getUtilisateurChapitreDateInscription(): ?\DateTimeInterface
     {
-        return $this->utilisateur_chapitre_date_inscription;
+        return $this->utilisateurChapitreDateInscription;
     }
 
-    public function setUtilisateurChapitreDateInscription(\DateTimeInterface $utilisateur_chapitre_date_inscription): self
+    public function setUtilisateurChapitreDateInscription(\DateTimeInterface $utilisateurChapitreDateInscription): self
     {
-        $this->utilisateur_chapitre_date_inscription = $utilisateur_chapitre_date_inscription;
+        $this->utilisateurChapitreDateInscription = $utilisateurChapitreDateInscription;
 
         return $this;
     }
 
     public function getUtilisateurChapitreTermine(): ?int
     {
-        return $this->utilisateur_chapitre_termine;
+        return $this->utilisateurChapitreTermine;
     }
 
-    public function setUtilisateurChapitreTermine(int $utilisateur_chapitre_termine): self
+    public function setUtilisateurChapitreTermine(int $utilisateurChapitreTermine): self
     {
-        $this->utilisateur_chapitre_termine = $utilisateur_chapitre_termine;
+        $this->utilisateurChapitreTermine = $utilisateurChapitreTermine;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CoursRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,25 +17,35 @@ class Cours
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $titre_cour = null;
+    private ?string $titreCour = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $synopsis_cour = null;
+    private ?string $synopsisCour = null;
 
     #[ORM\Column]
     private ?int $cour_niveau = null;
 
     #[ORM\Column]
-    private ?int $temps_estime_cour = null;
+    private ?int $temps_estimeCour = null;
 
     #[ORM\Column(length: 100, nullable: true)]
-    private ?string $image_cour = null;
+    private ?string $imageCour = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_cour = null;
+    private ?\DateTimeInterface $dateCour = null;
 
     #[ORM\Column]
-    private ?int $cree_cour = null;
+    private ?int $creeCour = null;
+
+    #[ORM\OneToMany(mappedBy: 'cours', targetEntity: Chapitres::class, orphanRemoval: true)]
+    private Collection $chapitres;
+
+    public function __construct()
+    {
+        $this->chapitres = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
@@ -42,24 +54,24 @@ class Cours
 
     public function getTitreCour(): ?string
     {
-        return $this->titre_cour;
+        return $this->titreCour;
     }
 
-    public function setTitreCour(string $titre_cour): self
+    public function setTitreCour(string $titreCour): self
     {
-        $this->titre_cour = $titre_cour;
+        $this->titreCour = $titreCour;
 
         return $this;
     }
 
     public function getSynopsisCour(): ?string
     {
-        return $this->synopsis_cour;
+        return $this->synopsisCour;
     }
 
-    public function setSynopsisCour(string $synopsis_cour): self
+    public function setSynopsisCour(string $synopsisCour): self
     {
-        $this->synopsis_cour = $synopsis_cour;
+        $this->synopsisCour = $synopsisCour;
 
         return $this;
     }
@@ -78,49 +90,80 @@ class Cours
 
     public function getTempsEstimeCour(): ?int
     {
-        return $this->temps_estime_cour;
+        return $this->temps_estimeCour;
     }
 
-    public function setTempsEstimeCour(int $temps_estime_cour): self
+    public function setTempsEstimeCour(int $temps_estimeCour): self
     {
-        $this->temps_estime_cour = $temps_estime_cour;
+        $this->temps_estimeCour = $temps_estimeCour;
 
         return $this;
     }
 
     public function getImageCour(): ?string
     {
-        return $this->image_cour;
+        return $this->imageCour;
     }
 
-    public function setImageCour(?string $image_cour): self
+    public function setImageCour(?string $imageCour): self
     {
-        $this->image_cour = $image_cour;
+        $this->imageCour = $imageCour;
 
         return $this;
     }
 
     public function getDateCour(): ?\DateTimeInterface
     {
-        return $this->date_cour;
+        return $this->dateCour;
     }
 
-    public function setDateCour(\DateTimeInterface $date_cour): self
+    public function setDateCour(\DateTimeInterface $dateCour): self
     {
-        $this->date_cour = $date_cour;
+        $this->dateCour = $dateCour;
 
         return $this;
     }
 
     public function getCreeCour(): ?int
     {
-        return $this->cree_cour;
+        return $this->creeCour;
     }
 
-    public function setCreeCour(int $cree_cour): self
+    public function setCreeCour(int $creeCour): self
     {
-        $this->cree_cour = $cree_cour;
+        $this->creeCour = $creeCour;
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Chapitres>
+     */
+    public function getChapitres(): Collection
+    {
+        return $this->chapitres;
+    }
+
+    public function addChapitre(Chapitres $chapitre): self
+    {
+        if (!$this->chapitres->contains($chapitre)) {
+            $this->chapitres->add($chapitre);
+            $chapitre->setCours($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChapitre(Chapitres $chapitre): self
+    {
+        if ($this->chapitres->removeElement($chapitre)) {
+            // set the owning side to null (unless already changed)
+            if ($chapitre->getCours() === $this) {
+                $chapitre->setCours(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

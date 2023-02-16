@@ -30,13 +30,13 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $utilisateur_nom = null;
+    private ?string $utilisateurNom = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $utilisateur_prenom = null;
+    private ?string $utilisateurPrenom = null;
 
     #[ORM\Column(length: 100, nullable: true)]
-    private ?string $utilisateur_image = null;
+    private ?string $utilisateurImage = null;
 
     public function getId(): ?int
     {
@@ -110,36 +110,36 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUtilisateurNom(): ?string
     {
-        return $this->utilisateur_nom;
+        return $this->utilisateurNom;
     }
 
-    public function setUtilisateurNom(string $utilisateur_nom): self
+    public function setUtilisateurNom(string $utilisateurNom): self
     {
-        $this->utilisateur_nom = $utilisateur_nom;
+        $this->utilisateurNom = $utilisateurNom;
 
         return $this;
     }
 
     public function getUtilisateurPrenom(): ?string
     {
-        return $this->utilisateur_prenom;
+        return $this->utilisateurPrenom;
     }
 
-    public function setUtilisateurPrenom(string $utilisateur_prenom): self
+    public function setUtilisateurPrenom(string $utilisateurPrenom): self
     {
-        $this->utilisateur_prenom = $utilisateur_prenom;
+        $this->utilisateurPrenom = $utilisateurPrenom;
 
         return $this;
     }
 
     public function getUtilisateurImage(): ?string
     {
-        return $this->utilisateur_image;
+        return $this->utilisateurImage;
     }
 
-    public function setUtilisateurImage(?string $utilisateur_image): self
+    public function setUtilisateurImage(?string $utilisateurImage): self
     {
-        $this->utilisateur_image = $utilisateur_image;
+        $this->utilisateurImage = $utilisateurImage;
 
         return $this;
     }

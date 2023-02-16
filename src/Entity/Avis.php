@@ -15,7 +15,7 @@ class Avis
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $contenu_avis = null;
+    private ?string $contenuAvis = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
@@ -28,12 +28,12 @@ class Avis
 
     public function getContenuAvis(): ?string
     {
-        return $this->contenu_avis;
+        return $this->contenuAvis;
     }
 
-    public function setContenuAvis(string $contenu_avis): self
+    public function setContenuAvis(string $contenuAvis): self
     {
-        $this->contenu_avis = $contenu_avis;
+        $this->contenuAvis = $contenuAvis;
 
         return $this;
     }

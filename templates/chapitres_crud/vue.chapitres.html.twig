@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chapitres{% endblock %}
+
+{% block body %}
+    {% for chapitre in chapitres %}
+
+        <section class="coursHaut">
+           <p>{{ chapitre_titre }}</p>
+            <img src="{{asset ('images/horloge.png')}}">
+            <p>{{ chapitre_position }}</p>
+            <img src="{{asset ('images/niveau.png')}}">
+            <p>Niveau</p>
+            <p>Date de publication/mise à jour</p>
+        </section>    
+        <section>
+            <p>{{chapitre_contenu}}</p>
+        </section>          
+
+    {% endfor %}
+ 
+{% endblock %}

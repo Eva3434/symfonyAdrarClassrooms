@@ -15,17 +15,20 @@ class Chapitres
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $chapitre_titre = null;
+    private ?string $chapitreTitre = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $chapitre_contenu = null;
+    private ?string $chapitreContenu = null;
 
     #[ORM\Column]
-    private ?int $chapitre_position = null;
+    private ?int $chapitrePosition = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'chapitres')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Cours $cours = null;
+
+
+    
 
     public function getId(): ?int
     {
@@ -34,36 +37,36 @@ class Chapitres
 
     public function getChapitreTitre(): ?string
     {
-        return $this->chapitre_titre;
+        return $this->chapitreTitre;
     }
 
-    public function setChapitreTitre(string $chapitre_titre): self
+    public function setChapitreTitre(string $chapitreTitre): self
     {
-        $this->chapitre_titre = $chapitre_titre;
+        $this->chapitreTitre = $chapitreTitre;
 
         return $this;
     }
 
     public function getChapitreContenu(): ?string
     {
-        return $this->chapitre_contenu;
+        return $this->chapitreContenu;
     }
 
-    public function setChapitreContenu(string $chapitre_contenu): self
+    public function setChapitreContenu(string $chapitreContenu): self
     {
-        $this->chapitre_contenu = $chapitre_contenu;
+        $this->chapitreContenu = $chapitreContenu;
 
         return $this;
     }
 
     public function getChapitrePosition(): ?int
     {
-        return $this->chapitre_position;
+        return $this->chapitrePosition;
     }
 
-    public function setChapitrePosition(int $chapitre_position): self
+    public function setChapitrePosition(int $chapitrePosition): self
     {
-        $this->chapitre_position = $chapitre_position;
+        $this->chapitrePosition = $chapitrePosition;
 
         return $this;
     }
@@ -73,10 +76,12 @@ class Chapitres
         return $this->cours;
     }
 
-    public function setCours(Cours $cours): self
+    public function setCours(?Cours $cours): self
     {
         $this->cours = $cours;
 
         return $this;
-    }
+    }    
+
+   
 }

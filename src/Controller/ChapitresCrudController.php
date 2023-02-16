@@ -13,7 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/chapitres/crud')]
 class ChapitresCrudController extends AbstractController
 {
-    #[Route('/', name: 'app_chapitres_crud_index', methods: ['GET'])]
+    #[Route('/', name: 'app_chapitres_crud_vue', methods: ['GET'])]
+    public function vue(ChapitresRepository $chapitresRepository): Response
+    {
+        return $this->render('chapitres_crud/vue.chapitres.html.twig', [
+            'chapitres' => $chapitresRepository->findAll(),
+        ]);
+    }
+    #[Route('/index', name: 'app_chapitres_crud_index', methods: ['GET'])]
     public function index(ChapitresRepository $chapitresRepository): Response
     {
         return $this->render('chapitres_crud/index.html.twig', [
@@ -30,7 +37,6 @@ class ChapitresCrudController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $chapitresRepository->save($chapitre, true);
-
             return $this->redirectToRoute('app_chapitres_crud_index', [], Response::HTTP_SEE_OTHER);
         }
 

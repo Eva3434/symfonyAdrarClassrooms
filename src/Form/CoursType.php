@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Cours;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +19,7 @@ class CoursType extends AbstractType
             ->add('cour_niveau')
             ->add('temps_estime_cour')
             ->add('image_cour', FileType::class)
-            ->add('date_cour')
+            ->add('date_cour', DateType::class)
             ->add('cree_cour')
         ;
     }

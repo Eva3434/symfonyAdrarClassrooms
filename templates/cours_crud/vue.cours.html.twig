@@ -9,17 +9,18 @@
     <article>
         {% for cour in cours %}
             <section class="cadreFormation">
-                <div class="cadreCouleur1"><br></div>
+                <div class="cadreCouleur">
+                    <img src="{{ asset("images/" ~ cour.imageCour) }}">
+                </div>                
                 <div class="cadreDroite">
                     <p class="coursCadre">COURS</p>
-                    <p>{{ cour.titreCour }}</p>
-                    <img src="{{ cour.imageCour }}">
-                    <img src="{{asset ('images/niveau.png')}}">
-                    <p>Niveau</p>
-                    <p>{{ cour.courNiveau }}</p>
-                    <img src="{{asset ('images/horloge.png')}}">
-                    <p>Temps</p>
-                    <p>{{ cour.tempsEstimeCour }}</p>
+                    <p>{{ cour.titreCour }}</p> 
+                    <div class="niveauTemps">                   
+                        <img src="{{asset ('images/niveau.png')}}">                        
+                        <p>{{ cour.courNiveau }}</p>
+                        <img src="{{asset ('images/horloge.png')}}">                       
+                        <p>{{ cour.tempsEstimeCour }} heures</p>
+                    </div>
                     <p>Synopsis</p>
                     <p>{{ cour.synopsisCour }}</p>
                 </div>
